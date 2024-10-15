@@ -1,0 +1,46 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Task-Manager-App is an intuitive and efficient tool for organizing, tracking, and managing tasks. Boost productivity with features like task prioritization, deadlines, reminders, and collaborative task sharing—all in one streamlined interface.">
+    <meta name="keywords" content="tasks, todo, task manager, organise tasks, todo list, deadlines, managing tasks">
+    <meta name="author" content="Vishal Chapa">
+    <meta name="robots" content="index, follow">
+
+    <title>{% block title %}Mimo{% endblock %}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'favicon/favicon-48x48.png' %}" sizes="48x48">
+    <link rel="icon" type="image/svg+xml" href="{% static 'favicon/favicon.svg' %}">
+    <link rel="shortcut icon" href="{% static 'favicon/favicon.ico' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}">
+    <meta name="apple-mobile-web-app-title" content="MyWebSite">
+    <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}">
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- Block for additional CSS -->
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+    <main id="content-wrapper">
+        {% block content %}
+
+        {% endblock %}
+    </main>
+</body>
+
+</html>
