@@ -51,6 +51,10 @@ INSTALLED_APPS = [
     'cloudinary',
     'core',
     'tasks',
+    'django.contrib.sites', 
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
 
 MIDDLEWARE = [
