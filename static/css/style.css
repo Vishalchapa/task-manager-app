@@ -22,7 +22,7 @@ body {
 
 #confirmation-message {
     list-style-type: none;
-    background-color: #d499e7;
+    background-color: #d33737;
 }
 
 /* Nav Menu */
@@ -75,7 +75,7 @@ body {
 /* Style for the active navigation link */
 #main-nav ul a.active {
     font-weight: bold;
-    border-bottom: 2px solid #800ea2;
+    border-bottom: 2px solid #d33737;
     text-decoration: underline;
 }
 
@@ -113,7 +113,7 @@ body {
 }
 
 .cta-primary {
-    background-color: #800ea2;
+    background-color: #d33737;
 }
 
 .cta-secondary {
@@ -185,7 +185,7 @@ body {
 }
 
 .step i {
-    color: #800ea2;
+    color: #d33737;
     margin-bottom: 15px;
 }
 
@@ -319,7 +319,7 @@ body {
 
 .btn-create,
 .btn-submit {
-    background-color: #800ea2;
+    background-color: #d33737;
     color: #fff;
     margin-top: 10px;
     padding: 3px 10px;
@@ -468,7 +468,7 @@ section h2 {
 
 #about-features ul li::before {
     content: "✔";
-    color: #800ea2;
+    color: #d33737;
     position: absolute;
     left: 0;
     top: 0;
@@ -478,7 +478,7 @@ section h2 {
 /* Call to Action Section */
 #about-cta {
     text-align: center;
-    background-color: #800ea2;
+    background-color: #d33737;
     color: white;
     padding: 20px;
     border-radius: 10px;
@@ -495,7 +495,7 @@ section h2 {
 
 #about-cta .btn {
     background-color: white;
-    color: #800ea2;
+    color: #d33737;
     padding: 10px 20px;
     font-size: 1.2rem;
     border-radius: 5px;
@@ -536,14 +536,14 @@ section h2 {
     font-size: 1.2rem;
     color: #555;
     padding: 10px;
-    border-left: 4px solid #800ea2;
+    border-left: 4px solid #d33737;
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .how-to-use-item strong {
-    color: #800ea2;
+    color: #d33737;
 }
 
 
