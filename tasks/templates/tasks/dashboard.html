@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div id="dashboard-container" class="container">
+    <h1 class="dashboard-title">Your Task Dashboard</h1>
+    <!-- Search Form -->
+    <form method="GET" action="{% url 'dashboard' %}" id="search-form">
+        <input type="text" name="q" placeholder=" Search tasks..." value="{{ query }}">
+        <button type="submit" class="btn btn-search">Search</button>
+    </form>
+    <!-- Display Search Results if a search was made -->
+    {% if query %}
+    <h2 class="search-results-title">Search Results</h2>
+    <table id="search-results-table" class="tasks-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Due Date</th>
+                <th>Priority</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in search_results %}
+            <tr class="priority-{% if task.priority == 'High' %}high{% elif task.priority == 'Normal' %}normal{% elif task.priority == 'Low' %}low{% endif %}">
+                <td class="title-column">{{ task.title }}</td>
+                <td>{{ task.due_day }}</td>
+                <td><form action="{% url 'change-priority' task.id %}" method="post" class="priority-form">
+                    {% csrf_token %}
+                    <select name="priority" class="priority-select" onchange="this.form.submit()">
+                        <option value="High" {% if task.priority == "High" %}selected{% endif %}>High</option>
+                        <option value="Normal" {% if task.priority == "Normal" %}selected{% endif %}>Normal</option>
+                        <option value="Low" {% if task.priority == "Low" %}selected{% endif %}>Low</option>
+                    </select>
+                </form></td>
+                <td><form action="{% url 'change-status' task.id %}" method="post" class="status-form">
+                    {% csrf_token %}
+                    <select name="status" class="status-select" onchange="this.form.submit()">
+                        <option value="0" {% if task.status == 0 %}selected{% endif %}>Not Started</option>
+                        <option value="1" {% if task.status == 1 %}selected{% endif %}>In Progress</option>
+                        <option value="2" {% if task.status == 2 %}selected{% endif %}>Completed</option>
+                    </select>
+                </form></td>
+            <td class="task-actions">
+                <a href="{% url 'task-edit' task.id %}" class="btn-edit"><i class="fa-solid fa-pen-to-square"></i></a> |
+                <a href="{% url 'task-delete' task.id %}"><i class="fa-solid fa-trash-can"></i></a>
+            </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No tasks found</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    <br>
+    
+    <!-- Task Creation and Edit Form -->
+    <h2 class="form-title">{% if task_id %}Edit Task{% else %}Create a New Task{% endif %}</h2>
+    <button id="create-task-btn" class="btn btn-create" style="{% if task_id or form.errors %}display: none;{% endif %}">Create New Task</button>
+    <form method="post" id="createTaskForm" style="{% if task_id or form.errors %}display: block;{% else %}display: none;{% endif %}">
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+        {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+                {% if field.errors %}
+                    <div class="alert alert-danger">
+                        {{ field.errors }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-submit">{% if task_id %}Save Changes{% else %}Create Task{% endif %}</button>
+    </form>    
+
+    <!-- Active Tasks Section -->
+    <h2 class="section-title">Active Tasks</h2>
+    <table id="active-tasks-table" class="tasks-table">
+        <thead>
+            <tr>
+                <th class="sortable" data-sort="title">Title</th>
+                <th class="sortable" data-sort="due_day">Due Date</th>
+                <th class="sortable" data-sort="priority">Priority</th>
+                <th class="sortable" data-sort="status">Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+           {% for task in active_tasks %}
+            <tr class="priority-{% if task.priority == 'High' %}high{% elif task.priority == 'Normal' %}normal{% elif task.priority == 'Low' %}low{% endif %}">
+                <td>{{ task.title }}</td>
+                <td>{{ task.due_day }}</td>
+                <td><form action="{% url 'change-priority' task.id %}" method="post" class="priority-form">
+                    {% csrf_token %}
+                    <select name="priority" class="priority-select" onchange="this.form.submit()">
+                        <option value="High" {% if task.priority == "High" %}selected{% endif %}>High</option>
+                        <option value="Normal" {% if task.priority == "Normal" %}selected{% endif %}>Normal</option>
+                        <option value="Low" {% if task.priority == "Low" %}selected{% endif %}>Low</option>
+                    </select>
+                </form></td>
+                <td><form action="{% url 'change-status' task.id %}" method="post" class="status-form">
+                    {% csrf_token %}
+                    <select name="status" class="status-select" onchange="this.form.submit()">
+                        <option value="0" {% if task.status == 0 %}selected{% endif %}>Not Started</option>
+                        <option value="1" {% if task.status == 1 %}selected{% endif %}>In Progress</option>
+                        <option value="2" {% if task.status == 2 %}selected{% endif %}>Completed</option>
+                    </select>
+                </form></td>
+            <td class="task-actions">
+                    <a href="{% url 'task-edit' task.id %}"><i class="fa-solid fa-pen-to-square btn-edit" title="Edit Task"></i></a> 
+                    <a href="{% url 'task-delete' task.id %}"><i class="fa-solid fa-trash-can" title="Delete Task"></i></a> 
+                    <a href="{% url 'task-complete' task.id %}"><i class="fa-solid fa-square-check" title="Mark as Complete"></i></a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No active tasks</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Completed Tasks Section -->
+    <h2 class="section-title">Completed Tasks</h2>
+    <table id="completed-tasks-table" class="tasks-table">
+        <thead>
+            <tr>
+<th class="sortable" data-sort="title">Title</th>
+<th class="sortable" data-sort="due_day">Due Date</th>
+<th class="sortable" data-sort="priority">Priority</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in completed_tasks %}
+            <tr
+                class="priority-{% if task.priority == 'High' %}high{% elif task.priority == 'Normal' %}normal{% elif task.priority == 'Low' %}low{% endif %}">
+                <td>{{ task.title }}</td>
+                <td>{{ task.due_day }}</td>
+                <td>{{ task.get_priority_display }}</td>
+                <td>{{ task.get_status_display }}</td>
+                <td>
+                    <a href="{% url 'task-delete' task.id %}" class="delete-btn" title="Delete Task"><i class="fa-solid fa-trash-can"></i></a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5">No completed tasks</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
