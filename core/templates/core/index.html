@@ -5,11 +5,11 @@
 {% block content %}
 <div id="hero-section">
     <div class="container">
-        <h1>Boost Your Productivity</h1>
-        <p>Plan, track, and accomplish your tasks effortlessly.</p>
+        <h1>Planning Made Simple</h1>
+        <p>Determine, track, and accomplish your tasks efficiently.</p>
         <div class="cta-buttons">
             {% if user.is_authenticated %}
-            <a href="{% url 'about' %}" class="cta-secondary">Learn More</a>
+            <a href="{% url 'about' %}" class="cta-secondary">Know More</a>
             {% else %}
             <a href="{% url 'account_signup' %}" class="cta-primary">Sign In</a>
             <a href="{% url 'about' %}" class="cta-secondary">Learn More</a>
@@ -21,12 +21,10 @@
 <div id="description-section" class="section">
     <div class="container">
         <h2>Task Management Made Simple</h2>
-        <p>Welcome to TMA – the easiest way to take control of your to-do list and make every day productive. Whether
-            you're juggling personal tasks or managing a team, our intuitive platform helps you stay organized, track
-            your progress, and celebrate your achievements.</p>
+        <p>Welcome to TMA – Discover an effective method to manage your tasks and enhance your productivity each day. Whether you're balancing individual responsibilities or leading a team, our easy-to-use platform helps you stay organised, monitor your progress, and acknowledge your successes.</p>
     </div>
     <div class="image-container">
-        <img src="https://res.cloudinary.com/defkksjtb/image/upload/v1727276061/samples/cup-on-a-table.jpg"
+        <img src="https://res.cloudinary.com/defkksjtb/image/upload/v1729106276/DALL_E_2024-10-16_20.17.13_-_A_laptop_screen_displaying_a_modern_productivity_app_interface._The_screen_showcases_organized_task_lists_with_checkmarks_next_to_completed_tasks_pro_r4wdxx.webp"
             alt="Join TMA today">
     </div>
 </div>
@@ -34,18 +32,18 @@
 <!-- We will use font awesome here below -->
 <div id="how-it-works-section" class="section">
     <div class="container">
-        <h2>How It Works</h2>
+        <h2>How TMA Functions</h2>
         <div class="how-it-works-steps">
             <div class="step">
-                <i class="fa-solid fa-user-plus fa-3x"></i>
-                <p>Register or sign in.</p>
+                <i class="fa-solid fa-user fa-3x"></i>
+                <p>Sign In.</p>
             </div>
             <div class="step">
-                <i class="fa-solid fa-tasks fa-3x"></i>
+                <i class="fa-solid fa-bars-progress fa-3x"></i>
                 <p>Add tasks and set deadlines.</p>
             </div>
             <div class="step">
-                <i class="fa-solid fa-chart-line fa-3x"></i>
+                <i class="fa-solid fa-chart-column fa-3x"></i>
                 <p>Track Progress</p>
             </div>
         </div>
@@ -55,40 +53,32 @@
 <div id="key-features-section" class="section">
     <div class="features-container">
         <div>
-            <h2>Key Features</h2>
+            <h2>Primary Highlights</h2>
             <ul class="features-list">
-                <li><strong>Task Creation & Editing:</strong> Easily create and edit tasks to manage your workload.</li>
-                <li><strong>Priority Levels:</strong> Set tasks as High, Normal, or Low priority with color-coded labels
-                    for
-                    quick reference.</li>
-                <li><strong>Mark Tasks as Complete:</strong> Move tasks to the Completed section with a simple click
-                    when
-                    finished.</li>
-                <li><strong>Task Search:</strong> Quickly search for tasks using keywords and filters for easy
-                    navigation.
+                <li><strong>Creating and Updating Tasks:</strong> Efficiently create and modify tasks to streamline your workload management.</li>
+                <li><strong>Hierarchy of Task Priorities:</strong> Assign priority levels—High, Normal, or Low—with color-coded tags for immediate visual reference.</li>
+                <li><strong>Completing Tasks:</strong> Seamlessly move tasks to the Completed section with a single click upon completion.</li>
+                <li><strong>Task Lookup:</strong> Quickly locate tasks through keyword search and filters for enhanced navigation.
                 </li>
-                <li><strong>Active & Completed Tasks:</strong> View both active and completed tasks on your dashboard,
-                    separated for clarity.</li>
-                <li><strong>Task Deletion:</strong> Remove tasks that are no longer needed with confirmation to avoid
-                    accidental deletion.</li>
+                <li><strong>Ongoing & Finished Tasks:</strong>  View both active and completed tasks on your dashboard, clearly separated for better organisation.</li>
+                <li><strong>Deleting Unnecessary Tasks:</strong> Safely delete tasks with confirmation prompts to prevent accidental removal.</li>
             </ul>
         </div>
         <div class="image-container">
-            <img src="https://res.cloudinary.com/defkksjtb/image/upload/v1729093258/DALL_E_2024-10-16_16.40.21_-_A_neat_and_organized_office_desk_with_various_management_tools._The_desk_has_a_computer_in_the_center_surrounded_by_a_stack_of_books_notepads_and_p_tkc16a.webp"
-                alt="Join HealMate today">
+            <img src="https://res.cloudinary.com/defkksjtb/image/upload/v1727276061/samples/cup-on-a-table.jpg">
         </div>
     </div>
 </div>
 
 <div class="cta-section">
     <div class="container">
-        <h2>Ready to Boost Your Productivity?</h2>
-        <p>Join TMA today and take control of your tasks like never before. It's fast, easy, and free to get started!
+        <h2>Prepared to Enhance Your Efficiency?</h2>
+        <p>Become a part of TMA today and gain unprecedented control over your tasks. It's quick, straightforward, and free to begin!
         </p>
         {% if user.is_authenticated %}
-        <a href="{% url 'dashboard' %}" class="btn-cta-primary">Go to Dashboard</a>
+        <a href="{% url 'dashboard' %}" class="btn-cta-primary"><i class="fa-solid fa-table-columns fa-3x"></i></a>
         {% else %}
-        <a href="{% url 'account_signup' %}" class="btn cta-primary">Get Started for Free</a>
+        <a href="{% url 'account_signup' %}" class="btn cta-primary"><i class="fa-solid fa-user-large"></i></a>
         {% endif %}
     </div>
 </div>
