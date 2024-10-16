@@ -36,11 +36,94 @@
 </head>
 
 <body>
+    <header id="main-header">
+        <!-- Navigation menu -->
+        <nav id="main-nav">
+            <div class="nav-container">
+                <a href="{% url 'index' %}" class="logo-link">
+                    <img src="{% static 'media/logo.png' %}" alt="Mimo Logo" class="logo">
+                    <span class="logo-text">MIMO</span>
+                </a>
+
+                <ul id="nav-links">
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'dashboard' %}" class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">Dashboard</a></li>
+                    <li><a href="{% url 'how_to_use' %}" class="{% if request.resolver_match.url_name == 'how_to_use' %}active{% endif %}">How to Use</a></li>
+                    <br>
+                    <li><a href="{% url 'account_change_password' %}"
+                            class="{% if request.resolver_match.url_name == 'account_change_password' %}active{% endif %}">Change
+                            password</a></li>
+
+                    <li>
+                        <a class="{% if request.path == logout_url %}current{% endif %} {% if request.resolver_match.url_name == 'account_logout' %}active{% endif %}"
+                            aria-current="page" href="{% url 'account_logout' %}"
+                            aria-label="Menu Logout link (Logs you out)">Logout</a>
+                    </li>
+                    {% else %}
+                    <li>
+                        <a class="{% if request.path == main_url %}current{% endif %} {% if request.resolver_match.url_name == 'index' %}active{% endif %}"
+                            aria-current="page" href="{% url 'index' %}" aria-label="Opens the home page">Home</a>
+                    </li>
+                    <li><a href="{% url 'about' %}" class="{% if request.resolver_match.url_name == 'about' %}active{% endif %}">About</a></li>
+                    <li>
+                        <a class="{% if request.path == signup_url %}current{% endif %} {% if request.resolver_match.url_name == 'account_signup' %}active{% endif %}" aria-current="page"
+                            href="{% url 'account_signup' %}"
+                            aria-label="Menu Register link (Opens the Register page)">Register</a>
+                    </li>
+                    <li>
+                        <a class="{% if request.path == login_url %}current{% endif %} {% if request.resolver_match.url_name == 'account_login' %}active{% endif %}" aria-current="page"
+                            href="{% url 'account_login' %}"
+                            aria-label="Menu Login link (Opens the Login page)">Login</a>
+                    </li>
+                    {% endif %}
+                </ul>
+
+            </div>
+        </nav>
+
+    </header>
+
+    <!-- Confirmation message function -->
+    {% if messages %}
+    <ul id="confirmation-message">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
+
     <main id="content-wrapper">
         {% block content %}
 
         {% endblock %}
     </main>
+
+    <footer id="main-footer">
+        <ul id="socials">
+            <li><a href="http://facebook.com" target="_blank" rel="noopener"
+                    aria-label="Visit our Facebook page (Opens Facebook website on a new browser)"><i
+                        class="fa-brands fa-facebook"></i></a></li>
+            <li><a href="http://twitter.com" target="_blank" rel="noopener"
+                    aria-label="Visit our Twitter page (Opens Twitter website on a new browser)"><i
+                        class="fa-brands fa-twitter"></i></a></li>
+            <li><a href="http://pinterest.com" target="_blank" rel="noopener"
+                    aria-label="Visit our Pinterest page (Opens Pinterest website on a new browser)"><i
+                        class="fa-brands fa-pinterest"></i></a></li>
+            <li><a href="http://instagram.com" target="_blank" rel="noopener"
+                    aria-label="Visit our Instagram page (Opens Instagram website on a new browser)"><i
+                        class="fa-brands fa-instagram"></i></a></li>
+            <li><a href="http://youtube.com" target="_blank" rel="noopener"
+                    aria-label="Visit our Youtube page (Opens Youtube website on a new browser)"><i
+                        class="fa-brands fa-youtube"></i></a></li>
+        </ul>
+        <p>&copy; 2024 MIMO. All rights reserved.</p>
+    </footer>
+
+    <!-- Font Awesome Script -->
+    <script src="https://kit.fontawesome.com/f40ce1e09e.js" crossorigin="anonymous"></script>
+    {% block extra_js %}{% endblock %}
+
+    <script src="{% static 'js/script.js' %}"></script>
 </body>
 
 </html>
