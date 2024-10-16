@@ -31,7 +31,7 @@ form input, form select {
 form button {
     width: 100%;
     padding: 10px;
-    background-color: #800ea2;
+    background-color: #d33737;
     color: white;
     border: none;
     border-radius: 5px;
@@ -40,7 +40,7 @@ form button {
 }
 
 form button:hover {
-    background-color: #521b62;
+    background-color: #671212;
 }
 
 .form-errors {
@@ -67,7 +67,7 @@ p {
 
 /* Links */
 a {
-    color: #800ea2;
+    color: #d33737;
     text-decoration: none;
 }
 
@@ -77,7 +77,7 @@ a:hover {
 
 /* Sign In and Sign Out Buttons */
 .primaryAction {
-    background-color: #800ea2;
+    background-color: #d33737;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -87,7 +87,7 @@ a:hover {
 }
 
 .primaryAction:hover {
-    background-color: #800ea2;
+    background-color: #d33737;
 }
 
 .secondaryAction {
@@ -104,7 +104,7 @@ a:hover {
 }
 
 .logout-page button {
-    background-color: #800ea2;
+    background-color: #d33737;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -114,7 +114,7 @@ a:hover {
 }
 
 .logout-page button:hover {
-    background-color: #501262;
+    background-color: #671212;
 }
 
 @media (min-width: 768px) {
