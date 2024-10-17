@@ -76,7 +76,7 @@
         <p>Become a part of TMA today and gain unprecedented control over your tasks. It's quick, straightforward, and free to begin!
         </p>
         {% if user.is_authenticated %}
-        <a href="{% url 'dashboard' %}" class="btn-cta-primary"><i class="fa-solid fa-table-columns fa-3x"></i></a>
+        <a href="{% url 'dashboard' %}" class="btn-cta-primary"><i class="fa-solid fa-table-columns fa-3x fa-red"></i></a>
         {% else %}
         <a href="{% url 'account_signup' %}" class="btn cta-primary"><i class="fa-solid fa-user-large"></i></a>
         {% endif %}
